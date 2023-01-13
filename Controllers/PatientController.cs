@@ -5,7 +5,6 @@ namespace Radiologics_Medikal_Intern_.Controllers;
 [ApiController]
 [Route("[controller]")]
 
-[HttpGet]
 
 public class PatientController : ControllerBase
 {
@@ -14,9 +13,9 @@ public class PatientController : ControllerBase
         "Richard", "Benjamin", "Tobin", "Winston", "Hale", "Posey"
     };
 
-    private static readonly string[] PatientsId = new[]
+    private static readonly int[] PatientsId = new[]
     {
-        "123456789", "987654321", "123456789", "987654321", "123456789", "987654321"
+        123123, 123124, 123125, 123126, 123127, 123128
     };
     
     private static readonly string[] PatientsDisease = new[]
@@ -37,5 +36,7 @@ public class PatientController : ControllerBase
         })
         .ToArray();
     }
+
+
 
 }
