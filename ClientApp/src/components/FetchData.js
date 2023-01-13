@@ -1,34 +1,44 @@
-
-
 import React,{useEffect, useState} from 'react'
 
 function FetchData() {
 
     const [data, setData] = useState([])
 
-    //create useffect to fetch data from api
     useEffect(() => {
-        fetch("http://localhost:57495/weatherforecast")
-        .then(response => response.json())
-        .then(json => setData(json))
+        async function fetchData() {
+            const response = await fetch('patient',{
+                method: 'GET',
+            })
+            const data = await response.json()
+            setData(data)
+        }
+        fetchData()
     }, [])
 
-    console.log("data", data)
+
   return (
-    <div>
-        {
-            data.map((item, index) => {
-                return (
-                    <div key={index}>
-                        <h1>{item.title}</h1>
-                        <p>{item.body}</p>
-                    </div>
-                )
-            }
-            )
-            
-        }
-    </div>
+    <table className='table table-striped table-dark' aria-labelledby="tabelLabel">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>ID</th>
+                <th>Disease</th>
+            </tr>
+        </thead>
+        <tbody>
+            {data.map((item, index) => (
+                <tr key={index}>
+                    <td>{item.name}</td>
+                    <td>{item.id}</td>
+                    <td>{item.disease}</td>
+                </tr>
+            ))}
+        </tbody>
+    </table>
+    
+    
+
+                
   )
 }
 

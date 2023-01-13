@@ -6,37 +6,34 @@ namespace Radiologics_Medikal_Intern_.Controllers;
 [Route("[controller]")]
 
 
-public class PatientController : ControllerBase
+public class patientController : ControllerBase
 {
-    private static readonly string[] PatientsName = new[]
+    private static readonly string[] name = new[]
     {
-        "Richard", "Benjamin", "Tobin", "Winston", "Hale", "Posey"
+        "James", "Robert","Mary","Patricia","Jennifer","Michael","David","Elizabeth"
     };
 
-    private static readonly int[] PatientsId = new[]
+    private static readonly string[] disease = new[]
     {
-        123123, 123124, 123125, 123126, 123127, 123128
-    };
-    
-    private static readonly string[] PatientsDisease = new[]
-    {
-        "Cancer", "Acne", "Allergies", "Asthma", "Diarrhea", "Dysentery"
+        "Cancer", "Diabetes", "AIDS", "HIV", "Ebola", "Malaria", "Tuberculosis", "Dengue"
     };
 
-    //create a get method to get all patients with their name, id and disease 
+    private readonly ILogger<patientController> _logger;
+
+    public patientController(ILogger<patientController> logger)
+    {
+        _logger = logger;
+    }
 
     [HttpGet]
     public IEnumerable<Patient> Get()
     {
         return Enumerable.Range(1, 5).Select(index => new Patient
         {
-            Name = PatientsName[Random.Shared.Next(PatientsName.Length)],
-            Id = PatientsId[Random.Shared.Next(PatientsId.Length)],
-            Disease = PatientsDisease[Random.Shared.Next(PatientsDisease.Length)]
+            Name = name[Random.Shared.Next(name.Length)],
+            Id = Random.Shared.Next(1, 1000),
+            Disease = disease[Random.Shared.Next(disease.Length)]
         })
         .ToArray();
     }
-
-
-
 }

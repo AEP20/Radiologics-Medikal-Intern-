@@ -5,7 +5,6 @@ function Home(){
   return (
     <div>
       <FetchData />
-      <h1>Home</h1>
     </div>
   );
 }
